@@ -1,23 +1,19 @@
-package com.devwdougherty.workshopmongo.domains;
+package com.devwdougherty.workshopmongo.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.devwdougherty.workshopmongo.domains.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
  */
-@Document(collection = "user")      // MongoDB collection reference.
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      *
      */
-    @Id
     private String id;
 
     /**
@@ -30,23 +26,22 @@ public class User implements Serializable {
      */
     private String email;
 
+
     /**
      *
      */
-    public User() {
+    public UserDTO() {
 
     }
 
     /**
      *
-     * @param id
-     * @param name
-     * @param email
+     * @param objUser
      */
-    public User(String id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    public UserDTO(User objUser) {
+        id = objUser.getId();
+        name = objUser.getName();
+        email = objUser.getEmail();
     }
 
     /**
@@ -95,27 +90,5 @@ public class User implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     *
-     * @param o
-     * @return
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
