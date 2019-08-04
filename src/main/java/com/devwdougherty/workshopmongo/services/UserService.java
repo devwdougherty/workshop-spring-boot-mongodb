@@ -65,6 +65,32 @@ public class UserService {
 
     /**
      *
+     * @param id
+     * @param user
+     * @return
+     */
+    public User putUpdate(String id, User user) {
+
+        User newUser = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found!"));
+
+        updateRecord(newUser, user);
+
+        return userRepository.save(newUser);
+    }
+
+    /**
+     *
+     * @param newUser
+     * @param user
+     */
+    private void updateRecord(User newUser, User user) {
+
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+    }
+
+    /**
+     *
      * @param userDTO
      * @return
      */
