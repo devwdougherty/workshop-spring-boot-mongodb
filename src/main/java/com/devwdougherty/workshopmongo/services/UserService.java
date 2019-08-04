@@ -53,6 +53,18 @@ public class UserService {
 
     /**
      *
+     * @param id
+     * @return
+     */
+    public void deleteById(String id) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found!"));
+
+        userRepository.delete(user);
+    }
+
+    /**
+     *
      * @param userDTO
      * @return
      */
