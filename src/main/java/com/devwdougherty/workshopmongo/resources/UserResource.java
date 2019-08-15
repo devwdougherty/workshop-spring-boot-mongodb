@@ -53,7 +53,7 @@ public class UserResource {
 
     /**
      *
-     * @param id
+     * @param userDTO
      * @return
      */
     @PostMapping
