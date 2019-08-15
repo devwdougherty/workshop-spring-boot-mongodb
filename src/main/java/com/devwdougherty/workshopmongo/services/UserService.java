@@ -43,6 +43,18 @@ public class UserService {
 
     /**
      *
+     * @param id
+     * @return
+     */
+    public List<Post> findPostsByUserId(String id) {
+
+        List<Post> posts = userRepository.findById(id).get().getPostList();
+
+        return posts;
+    }
+
+    /**
+     *
      * @param user
      * @return
      */
