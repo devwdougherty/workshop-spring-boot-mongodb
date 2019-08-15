@@ -4,6 +4,9 @@ import com.devwdougherty.workshopmongo.domains.*;
 
 import java.io.Serializable;
 
+/**
+ *
+ */
 public class AuthorDTO implements Serializable {
 
     /**
