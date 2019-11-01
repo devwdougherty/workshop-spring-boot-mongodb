@@ -9,6 +9,7 @@ import com.devwdougherty.workshopmongo.util.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,13 +53,20 @@ public class PostService {
     }
 
     /**
-     *
+     * Query.
      * @param text
      * @return
      */
     public List<Post> findTitle(String text) {
 
         return postRepository.findTitle(text);
+    }
+
+    public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+
+        maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
+
+        return postRepository.fullSearch(text, minDate, maxDate);
     }
 
     /**

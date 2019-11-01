@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,24 @@ public class PostResource {
 
         text = URL.decodeParam(text);
         List<Post> postList = postService.findTitle(text);
+
+        return ResponseEntity.ok().body(postList);
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     */
+    @GetMapping(value = "/fullsearch")
+    public ResponseEntity<List<Post>> fullSearch(@RequestParam(value = "text", defaultValue = "") String text,
+                                                 @RequestParam(value = "minDate", defaultValue = "") String minDate,
+                                                 @RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+
+        text = URL.decodeParam(text);
+
+        // new Date(0L) = the minimum date of the java.
+        List<Post> postList = postService.fullSearch(text, URL.convertDate(minDate, new Date(0L)), URL.convertDate(maxDate, new Date()));
 
         return ResponseEntity.ok().body(postList);
     }
